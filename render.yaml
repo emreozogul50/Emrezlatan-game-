@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: ez-vampir-koylu
+    runtime: node
+    plan: free
+    region: frankfurt
+    buildCommand: npm ci --omit=dev
+    startCommand: npm start
+    healthCheckPath: /healthz
+    envVars:
+      - key: NODE_VERSION
+        value: "20"
+      - key: HOST_USERNAME
+        value: EMREZL
+      - key: ROOM_CODE
+        value: KOY
+      - key: PUBLIC_URL
+        sync: false
+      - key: KICK_CLIENT_ID
+        sync: false
+      - key: KICK_CLIENT_SECRET
+        sync: false
+      - key: KICK_REDIRECT_URI
+        sync: false

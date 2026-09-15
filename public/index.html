@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>EZ Vampir Köylü</title>
+<meta name="description" content="KICK yayınları için çok oyunculu Vampir Köylü oyunu." />
+<meta name="theme-color" content="#0d1017" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+
+<!-- ─────────────── GİRİŞ ─────────────── -->
+<section id="join" class="join">
+  <div class="join-card">
+    <div class="brand">
+      <span class="brand-ez">EZ</span>
+      <span class="brand-main">VAMPİR</span>
+      <span class="brand-sub">KÖYLÜ</span>
+    </div>
+    <p class="join-lead">Köye gir, rolünü öğren, kimseye güvenme.</p>
+
+    <label class="field">
+      <span>Oyun içi adın</span>
+      <input id="nameInput" type="text" maxlength="16" autocomplete="off" placeholder="ör. Emre" />
+    </label>
+
+    <div class="field">
+      <span>Karakterini seç</span>
+      <div id="charPicker" class="char-grid"></div>
+      <p id="charName" class="char-name"></p>
+    </div>
+
+    <div class="field">
+      <span>Forma rengi</span>
+      <div id="colorPicker" class="swatches"></div>
+    </div>
+
+    <button id="joinBtn" class="btn btn-primary btn-lg">Köye gir</button>
+    <a id="kickLoginBtn" class="btn btn-kick" href="/auth/kick" hidden>KICK hesabıyla gir</a>
+
+    <p id="joinError" class="form-error" role="alert" aria-live="polite"></p>
+    <p class="join-foot">Oyun sahibi <strong id="joinHost">KICK:EMREZL</strong></p>
+  </div>
+</section>
+
+<!-- ─────────────── OYUN ─────────────── -->
+<div id="game" class="game" hidden>
+
+  <header class="topbar">
+    <div class="brand brand-sm">
+      <span class="brand-ez">EZ</span>
+      <span class="brand-main">VAMPİR</span>
+      <span class="brand-sub">KÖYLÜ</span>
+    </div>
+
+    <div class="sign sign-host">
+      <span class="sign-eyebrow">Moderatör</span>
+      <strong id="hostName">KICK:EMREZL</strong>
+    </div>
+
+    <div class="clock">
+      <div class="clock-icon" id="clockIcon" aria-hidden="true"></div>
+      <div>
+        <strong id="phaseTitle">Gün 1</strong>
+        <span id="phaseLabel">Tartışma zamanı</span>
+      </div>
+      <time id="timer">--:--</time>
+    </div>
+
+    <div class="topbar-right">
+      <div class="audio-bar">
+        <button id="muteBtn" class="icon-btn" title="Müziği kapat" aria-label="Müzik">♪</button>
+        <input id="volSlider" type="range" min="0" max="100" value="45" aria-label="Müzik sesi" />
+      </div>
+      <div id="execTarget" class="exec-target" hidden></div>
+      <div id="voiceBar" class="voice-bar">
+        <button id="voiceJoinBtn" class="btn btn-voice">🎤 Sese katıl</button>
+        <button id="voiceMuteBtn" class="icon-btn" title="Sustur" aria-label="Sustur" hidden>🎙</button>
+        <span id="voiceRoom" class="pill voice-room" hidden></span>
+      </div>
+      <span class="pill" id="playerCount">0/16</span>
+      <button id="restartBtn" class="icon-btn" title="Oyunu baştan başlat" aria-label="Yeniden başlat" hidden>⟲</button>
+      <button id="fsBtn" class="icon-btn" title="Tam ekran" aria-label="Tam ekran">⛶</button>
+      <button id="settingsBtn" class="icon-btn" title="Ayarlar" aria-label="Ayarlar">⚙</button>
+    </div>
+  </header>
+
+  <main class="layout">
+
+    <!-- SOL -->
+    <aside class="col col-left" data-pane="rol">
+      <div class="panel">
+        <div class="tabs" role="tablist">
+          <button class="tab is-active" data-tab="rol" role="tab">Rol bilgisi</button>
+          <button class="tab" data-tab="gorev" role="tab">Görevler</button>
+          <button class="tab" data-tab="vasiyet" role="tab">Vasiyet</button>
+        </div>
+        <div id="tabRol" class="tab-body">
+          <div id="myRole" class="my-role"></div>
+          <ul id="roleList" class="role-list"></ul>
+        </div>
+        <div id="tabVasiyet" class="tab-body" hidden>
+          <div id="willPanel" class="will-panel">
+            <h3>Vasiyetin</h3>
+            <p class="will-hint">Öldüğünde herkese gösterilir. Rolünü, şüphelerini, gece
+              gördüklerini yaz. Öldükten sonra değiştiremezsin.</p>
+            <textarea id="willInput" class="will-box" maxlength="500"
+              placeholder="Örn: Ben doktorum. 1. gece Mert'i korudum, saldırı geldi."></textarea>
+            <div class="will-foot"><span id="willState"></span></div>
+          </div>
+          <div id="willList" class="will-list"></div>
+        </div>
+
+        <div id="tabGorev" class="tab-body" hidden>
+          <div id="secretTask" class="secret-task" hidden></div>
+          <div id="taskBody" class="task-body"></div>
+          <ol id="eventLog" class="event-log"></ol>
+        </div>
+      </div>
+
+      <div class="panel panel-chat">
+        <header class="panel-head">
+          <h2 id="chatTitle">Sohbet (Köy)</h2>
+          <div id="chatFilters" class="chat-filters"></div>
+        </header>
+        <div id="chatBox" class="chat-box" aria-live="polite"></div>
+        <form id="chatForm" class="chat-form">
+          <input id="chatInput" type="text" maxlength="240" autocomplete="off" placeholder="Mesaj yaz..." />
+          <button type="submit" class="send-btn" aria-label="Gönder">➤</button>
+        </form>
+      </div>
+    </aside>
+
+    <!-- ORTA -->
+    <section class="col col-stage" data-pane="koy">
+      <div id="phaserStage" class="phaser-stage" hidden>
+        <div id="phaserNames" class="phaser-names"></div>
+      </div>
+      <div id="stage" class="stage">
+        <div class="ts-ground"></div>
+        <div id="scenery" class="ts-scenery"></div>
+        <div id="actors" class="actors"></div>
+        <div id="fxLayer" class="fx-layer"></div>
+        <div id="phaseVeil" class="phase-veil"></div>
+      </div>
+      <div id="banner" class="banner" hidden></div>
+    </section>
+
+    <!-- SAĞ -->
+    <aside class="col col-right" data-pane="oyuncular">
+      <div class="panel">
+        <header class="panel-head"><h2>Oyuncu listesi</h2></header>
+        <ol id="playerList" class="player-list"></ol>
+      </div>
+
+      <div id="actionPanel" class="panel panel-action"></div>
+
+      <div id="lobbyPanel" class="panel panel-lobby" hidden>
+        <header class="panel-head"><h2>Köy kurulumu</h2></header>
+        <div class="setup-tabs">
+          <button class="stab is-active" data-setup="slot">Slotlar</button>
+          <button class="stab" data-setup="klasik">Klasik</button>
+        </div>
+        <div id="slotSetup" class="slot-setup"></div>
+        <div id="roleSetup" class="role-setup" hidden></div>
+        <p id="setupNote" class="setup-note"></p>
+        <div class="bot-row">
+          <span id="botCount">0 bot</span>
+          <div class="bot-btns">
+            <button class="btn btn-ghost" data-bot="-all">Hepsini sil</button>
+            <button class="btn btn-ghost" data-bot="-1">−1</button>
+            <button class="btn btn-ghost" data-bot="1">+1</button>
+            <button class="btn btn-ghost" data-bot="5">+5</button>
+            <button class="btn btn-ghost" data-bot="fill">Doldur</button>
+          </div>
+        </div>
+        <div class="setup-actions">
+          <button id="readyBtn" class="btn btn-primary">Hazırım</button>
+          <button id="autoBalanceBtn" class="btn btn-ghost">Otomatik dağıt</button>
+          <button id="startBtn" class="btn btn-ghost">Herkesi beklemeden başlat</button>
+        </div>
+      </div>
+
+      <div class="sign sign-goal">Köyü kurtar<br /><em>ya da</em><br />vampirlere katıl!</div>
+    </aside>
+  </main>
+
+  <nav class="mobile-tabs">
+    <button class="mtab" data-pane="rol">Rol</button>
+    <button class="mtab is-active" data-pane="koy">Köy</button>
+    <button class="mtab" data-pane="oyuncular">Oyuncular</button>
+  </nav>
+</div>
+
+<!-- ─────────────── AYARLAR ─────────────── -->
+<div id="settingsModal" class="modal" hidden>
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="settingsTitle">
+    <header class="modal-head">
+      <h2 id="settingsTitle">Oyun ayarları</h2>
+      <button id="closeSettings" class="icon-btn" aria-label="Kapat">✕</button>
+    </header>
+    <div id="settingsBody" class="modal-body"></div>
+  </div>
+</div>
+
+<div id="taskModal" class="modal" hidden>
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="taskModalTitle">
+    <header class="modal-head">
+      <h2 id="taskModalTitle">Gizli görevler</h2>
+      <button id="closeTasks" class="icon-btn" aria-label="Kapat">✕</button>
+    </header>
+    <div id="taskModalBody" class="modal-body"></div>
+  </div>
+</div>
+
+<div id="willReveal" class="will-reveal" hidden>
+  <div class="will-paper" role="dialog" aria-live="polite">
+    <h3 id="willWho"></h3>
+    <p id="willText"></p>
+    <button id="willClose" class="btn btn-ghost">Kapat</button>
+  </div>
+</div>
+
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+<script src="/vendor/phaser.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script type="module" src="/js/client.js"></script>
+</body>
+</html>

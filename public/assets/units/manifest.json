@@ -1,0 +1,142 @@
+{
+ "pawn_black": {
+  "type": "pawn",
+  "color": "black",
+  "idle": 8,
+  "run": 6,
+  "size": 192
+ },
+ "warrior_black": {
+  "type": "warrior",
+  "color": "black",
+  "idle": 8,
+  "run": 6,
+  "size": 192
+ },
+ "archer_black": {
+  "type": "archer",
+  "color": "black",
+  "idle": 6,
+  "run": 4,
+  "size": 192
+ },
+ "monk_black": {
+  "type": "monk",
+  "color": "black",
+  "idle": 6,
+  "run": 4,
+  "size": 192
+ },
+ "pawn_blue": {
+  "type": "pawn",
+  "color": "blue",
+  "idle": 8,
+  "run": 6,
+  "size": 192
+ },
+ "warrior_blue": {
+  "type": "warrior",
+  "color": "blue",
+  "idle": 8,
+  "run": 6,
+  "size": 192
+ },
+ "archer_blue": {
+  "type": "archer",
+  "color": "blue",
+  "idle": 6,
+  "run": 4,
+  "size": 192
+ },
+ "monk_blue": {
+  "type": "monk",
+  "color": "blue",
+  "idle": 6,
+  "run": 4,
+  "size": 192
+ },
+ "pawn_purple": {
+  "type": "pawn",
+  "color": "purple",
+  "idle": 8,
+  "run": 6,
+  "size": 192
+ },
+ "warrior_purple": {
+  "type": "warrior",
+  "color": "purple",
+  "idle": 8,
+  "run": 6,
+  "size": 192
+ },
+ "archer_purple": {
+  "type": "archer",
+  "color": "purple",
+  "idle": 6,
+  "run": 4,
+  "size": 192
+ },
+ "monk_purple": {
+  "type": "monk",
+  "color": "purple",
+  "idle": 6,
+  "run": 4,
+  "size": 192
+ },
+ "pawn_red": {
+  "type": "pawn",
+  "color": "red",
+  "idle": 8,
+  "run": 6,
+  "size": 192
+ },
+ "warrior_red": {
+  "type": "warrior",
+  "color": "red",
+  "idle": 8,
+  "run": 6,
+  "size": 192
+ },
+ "archer_red": {
+  "type": "archer",
+  "color": "red",
+  "idle": 6,
+  "run": 4,
+  "size": 192
+ },
+ "monk_red": {
+  "type": "monk",
+  "color": "red",
+  "idle": 6,
+  "run": 4,
+  "size": 192
+ },
+ "pawn_yellow": {
+  "type": "pawn",
+  "color": "yellow",
+  "idle": 8,
+  "run": 6,
+  "size": 192
+ },
+ "warrior_yellow": {
+  "type": "warrior",
+  "color": "yellow",
+  "idle": 8,
+  "run": 6,
+  "size": 192
+ },
+ "archer_yellow": {
+  "type": "archer",
+  "color": "yellow",
+  "idle": 6,
+  "run": 4,
+  "size": 192
+ },
+ "monk_yellow": {
+  "type": "monk",
+  "color": "yellow",
+  "idle": 6,
+  "run": 4,
+  "size": 192
+ }
+}

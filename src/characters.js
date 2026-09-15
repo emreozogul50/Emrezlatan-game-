@@ -1,0 +1,92 @@
+// tools/make_characters.py tarafından üretilir. Elle düzenleme.
+export const CHARACTERS = [
+  {
+    "id": "k1",
+    "ad": "Sarışın",
+    "cins": "kiz"
+  },
+  {
+    "id": "k2",
+    "ad": "Esmer",
+    "cins": "kiz"
+  },
+  {
+    "id": "k3",
+    "ad": "Gözlüklü",
+    "cins": "kiz"
+  },
+  {
+    "id": "k4",
+    "ad": "Kumral",
+    "cins": "kiz"
+  },
+  {
+    "id": "k5",
+    "ad": "Kızıl",
+    "cins": "kiz"
+  },
+  {
+    "id": "k6",
+    "ad": "Cadı",
+    "cins": "kiz"
+  },
+  {
+    "id": "k7",
+    "ad": "Başörtülü",
+    "cins": "kiz"
+  },
+  {
+    "id": "k8",
+    "ad": "Topuzlu",
+    "cins": "kiz"
+  },
+  {
+    "id": "e1",
+    "ad": "Esmer",
+    "cins": "erkek"
+  },
+  {
+    "id": "e2",
+    "ad": "Gözlüklü",
+    "cins": "erkek"
+  },
+  {
+    "id": "e3",
+    "ad": "Kumral",
+    "cins": "erkek"
+  },
+  {
+    "id": "e4",
+    "ad": "Ayrık saç",
+    "cins": "erkek"
+  },
+  {
+    "id": "e5",
+    "ad": "Kel",
+    "cins": "erkek"
+  },
+  {
+    "id": "e6",
+    "ad": "Sakallı",
+    "cins": "erkek"
+  },
+  {
+    "id": "e7",
+    "ad": "Kasketli",
+    "cins": "erkek"
+  },
+  {
+    "id": "e9",
+    "ad": "Papyonlu",
+    "cins": "erkek"
+  },
+  {
+    "id": "e8",
+    "ad": "Şapkalı",
+    "cins": "erkek"
+  }
+];
+
+export const CHARACTER_IDS = new Set(CHARACTERS.map((c) => c.id));
+
+export const CHAR_FRAMES = { idle: 4, walk: 6, w: 128, h: 176 };

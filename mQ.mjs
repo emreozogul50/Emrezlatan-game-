@@ -1,0 +1,13 @@
+import pw from '/home/claude/.npm-global/lib/node_modules/playwright/index.js';
+const { chromium } = pw;
+const b=await chromium.launch();
+const ctx=await b.newContext({viewport:{width:393,height:600}, isMobile:true, hasTouch:true, deviceScaleFactor:3});
+const p=await ctx.newPage();
+await p.goto('http://localhost:3410');
+await p.waitForTimeout(1200);
+await p.screenshot({path:'/tmp/q_join.png'});
+await p.fill('#nameInput','Arkadas');
+await p.click('#joinBtn');
+await p.waitForTimeout(2500);
+console.log('girildi mi:', await p.evaluate(()=>document.getElementById('join').hidden));
+await b.close(); process.exit(0);
